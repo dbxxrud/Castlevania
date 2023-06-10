@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GameEngineCore.cpp" />
+    <ClCompile Include="GameEngineCollision.cpp">
+      <Filter>Object\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineCamera.cpp">
+      <Filter>Object\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineRenderer.cpp">
+      <Filter>Object\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineSprite.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourcesManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineActor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineLevel.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineActorSubObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngineCore.h" />
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>Object\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineCamera.h">
+      <Filter>Object\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineRenderer.h">
+      <Filter>Object\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineSprite.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcesManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineActor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineLevel.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineActorSubObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{5c8298c7-82a0-4c54-bb1c-2e01ecc88dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Collision">
+      <UniqueIdentifier>{946835cc-c908-41b7-885c-c755d1adbc85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering">
+      <UniqueIdentifier>{144caa02-460d-4aff-91ad-2e2fadd0da29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{0b6a7394-fd08-4d9c-9519-f41662775f77}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

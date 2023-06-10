@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Player.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CastlevaniaCore.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayActor.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBack.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="MainStageLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayUIManager.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Player.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_State.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CastlevaniaCore.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayActor.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBack.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="MainStageLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayUIManager.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Level">
+      <UniqueIdentifier>{c6235eea-b9e7-4725-924f-7b868fa526f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{4d357abb-aa23-4a0a-9f4d-f72f04a8e6b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play">
+      <UniqueIdentifier>{40dadc43-77c6-4ba4-9ba4-8952880a34ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{57309458-90f1-4199-92d5-2d8fe1ea95ce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
