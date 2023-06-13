@@ -107,14 +107,14 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Turning", "Player_Left_Turning.bmp", 0, 9, 0.05f, false);
 		MainRenderer->CreateAnimation("Right_Turning", "Player_Right_Turning.bmp", 0, 9, 0.05f, false);
 
-		MainRenderer->CreateAnimation("Left_Jump", "Player_Left_Jump.bmp", 0, 5, 0.09f, true);
-		MainRenderer->CreateAnimation("Right_Jump", "Player_Right_Jump.bmp", 0, 5, 0.09f, true);
+		MainRenderer->CreateAnimation("Left_Jump", "Player_Left_Jump.bmp", 0, 5, 0.15f, true);
+		MainRenderer->CreateAnimation("Right_Jump", "Player_Right_Jump.bmp", 0, 5, 0.2f, true);
 
 		MainRenderer->CreateAnimation("Left_Move_Jump", "Player_Left_Jump.bmp", 6, 9, 0.15f, true);
 		MainRenderer->CreateAnimation("Right_Move_Jump", "Player_Right_Jump.bmp", 6, 9, 0.15f, true);
 
-		MainRenderer->CreateAnimation("Right_Double_Jump", "Player_Left_DoubleJump.bmp", 0, 4, 0.15f, true);
-		MainRenderer->CreateAnimation("Left_Double_Jump", "Player_Right_DoubleJump.bmp", 0, 4, 0.15f, true);
+		MainRenderer->CreateAnimation("Left_Double_Jump", "Player_Left_DoubleJump.bmp", 0, 4, 0.15f, true);
+		MainRenderer->CreateAnimation("Right_Double_Jump", "Player_Right_DoubleJump.bmp", 0, 4, 0.15f, true);
 
 
 		MainRenderer->CreateAnimation("Right_Ducking", "Player_Right_Ducking.bmp", 0, 13, 0.05f, false);
