@@ -49,7 +49,7 @@ void MainStageLevel::Start()
 
 	LevelPlayer->OverOn(); // ? 머지
 
-	//LevelPlayer->SetPos({ 12700,1390 }); // 레벨1 초반위치
+	LevelPlayer->SetPos({ 10400,1500 }); // 레벨1 초반위치
 
 	CreateActor<PlayUIManager>();
 

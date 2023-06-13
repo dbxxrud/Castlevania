@@ -50,8 +50,8 @@ void Player::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_Idle.bmp"), 5, 2);
 
 		// 이동
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_Move.bmp"), 6, 6);
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_Move.bmp"), 6, 6);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_Move.bmp"), 5, 7);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_Move.bmp"), 5, 7);
 
 		// 돌기
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_Turning.bmp"), 5, 2);
@@ -82,6 +82,14 @@ void Player::Start()
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_DuckingAttack.bmp"), 5, 3);
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_DuckingAttack.bmp"), 5, 3);
 
+		// 박쥐모드
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_Bat.bmp"), 5, 6);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_Bat.bmp"), 5, 6);
+
+		// 박쥐모드 움직임
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Left_BatMove.bmp"), 6, 1);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Player_Right_BatMove.bmp"), 6, 1);
+
 	}
 
 	{
@@ -109,8 +117,8 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Double_Jump", "Player_Right_DoubleJump.bmp", 0, 4, 0.15f, true);
 
 
-		MainRenderer->CreateAnimation("Right_Ducking", "Player_Right_Ducking.bmp", 0, 13, 0.09f, false);
-		MainRenderer->CreateAnimation("Left_Ducking", "Player_Left_Ducking.bmp", 0, 13, 0.09f, false);
+		MainRenderer->CreateAnimation("Right_Ducking", "Player_Right_Ducking.bmp", 0, 13, 0.05f, false);
+		MainRenderer->CreateAnimation("Left_Ducking", "Player_Left_Ducking.bmp", 0, 13, 0.05f, false);
 
 
 
@@ -121,12 +129,19 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Attack", "Player_Left_Attack.bmp", 0, 13, 0.05f, false);
 		MainRenderer->CreateAnimation("Right_Attack", "Player_Right_Attack.bmp", 0, 13, 0.05f, false);
 
-		MainRenderer->CreateAnimation("Left_DuckingAttack", "Player_Left_DuckingAttack.bmp", 0, 13, 0.05f, false);
-		MainRenderer->CreateAnimation("Right_DuckingAttack", "Player_Right_DuckingAttack.bmp", 0, 13, 0.05f, false);
+		MainRenderer->CreateAnimation("Left_DuckingAttack", "Player_Left_DuckingAttack.bmp", 0, 13, 0.9f, false);
+		MainRenderer->CreateAnimation("Right_DuckingAttack", "Player_Right_DuckingAttack.bmp", 0, 13, 0.9f, false);
+
+		MainRenderer->CreateAnimation("Left_BatModeStart", "Player_Left_Bat.bmp", 0, 29,0.1f, true);
+		MainRenderer->CreateAnimation("Right_BatModeStart", "Player_Right_Bat.bmp", 0, 29, 0.1f,true);
+		
+		MainRenderer->CreateAnimation("Left_BatModeMove", "Player_Left_BatMove.bmp", 0, 5, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_BatModeMove", "Player_Right_BatMove.bmp", 0, 5, 0.1f, true);
+
 
 
 		MainRenderer->ChangeAnimation("Left_Idle");
-		MainRenderer->SetRenderScale({ 450.0f, 450.0f });
+		MainRenderer->SetRenderScale({ 900.0f, 900.0f });
 	
 	}
 
@@ -205,6 +220,8 @@ void Player::StateUpdate(float _Delta)
 		return AttackUpdate(_Delta);
 	case PlayerState::DuckingAttack:
 		return DuckingAttackUpdate(_Delta);
+	case PlayerState::Bat:
+		return BatModeUpdate(_Delta);
 	default:
 		break;
 	}
@@ -237,6 +254,9 @@ void Player::ChanageState(PlayerState _State)
 			break;
 		case PlayerState::DuckingAttack:
 			DuckingAttackStart();
+			break;
+		case PlayerState::Bat:
+			BatModeStart();
 			break;
 		default:
 			break;

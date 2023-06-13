@@ -42,6 +42,12 @@ void Player::DuckingAttackStart()
 	ChangeAnimationState("DuckingAttack");
 
 }
+void Player::BatModeStart()
+{
+	ChangeAnimationState("BatModeStart");
+	BatStart = true;
+}
+
 
 void Player::IdleUpdate(float _Delta)
 {
@@ -49,7 +55,7 @@ void Player::IdleUpdate(float _Delta)
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color)
 		{
-			//Gravity(_Delta);
+			Gravity(_Delta);
 		}
 		else
 		{
@@ -92,6 +98,13 @@ void Player::IdleUpdate(float _Delta)
 		ChanageState(PlayerState::Ducking);
 		return;
 	}
+
+	// 일단은 키 누르면 변신하는걸로하자
+	if (true == GameEngineInput::IsPress('B'))
+	{
+		ChanageState(PlayerState::Bat);
+		return;
+	}
 }
 
 void Player::RunUpdate(float _Delta)
@@ -100,7 +113,7 @@ void Player::RunUpdate(float _Delta)
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color) // 흰색바탕이면 중력적용
 		{
-			//Gravity(_Delta);
+			Gravity(_Delta);
 		}
 		else
 		{
@@ -181,7 +194,7 @@ void Player::RunUpdate(float _Delta)
 
 void Player::JumpUpdate(float _Delta)
 {
-	float JumpPower = 4.4f;
+	float JumpPower = 4.0f;
 	float DoubleJumpPower = 6.4f;
 	float MoveSpeed = 200.0f;
 	
@@ -263,4 +276,18 @@ void Player::DuckingAttackUpdate(float _Delta)
 		ChanageState(PlayerState::Idle);
 		return;
 	}
+}
+
+void Player::BatModeUpdate(float _Delta)
+{
+	if (true == MainRenderer->IsAnimationEnd() && true == BatStart)
+	{
+		ChangeAnimationState("BatModeMove");
+		MainRenderer->SetRenderScale({ 600.0f, 600.0f });
+		float4 Pos = MainPlayer->GetPos();
+		MainPlayer->SetPos({ Pos.X, Pos.Y - 50.0f });
+		BatStart = false;
+		return;
+	}
+
 }

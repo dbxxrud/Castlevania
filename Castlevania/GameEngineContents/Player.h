@@ -10,6 +10,7 @@ enum class PlayerState
 	Fall,
 	Attack,
 	DuckingAttack,
+	Bat,
 	Max, // 일반적으로 사용하지 않는 값.
 };
 
@@ -49,6 +50,7 @@ public:
 	void FallingStart();
 	void AttackStart();
 	void DuckingAttackStart();
+	void BatModeStart();
 
 	// 클래스로 만들어도 되고.
 	void IdleUpdate(float _Delta);
@@ -58,6 +60,8 @@ public:
 	void FallingUpdate(float _Delta);
 	void AttackUpdate(float _Delta);
 	void DuckingAttackUpdate(float _Delta);
+	void BatModeUpdate(float _Delta);
+
 
 	void ChanageState(PlayerState State);
 
@@ -66,6 +70,7 @@ public:
 	std::string CurState = "";
 
 	bool IsJump = false;
+	bool BatStart = false;
 
 
 
