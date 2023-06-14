@@ -214,7 +214,7 @@ void Player::JumpUpdate(float _Delta)
 
 		MovePos += float4::RIGHT * JumpPower;
 	}
-	// 더블점프
+	// 더블점프 -> 안되는중
 	if (IsJump == true && GameEngineInput::IsDown(VK_SPACE))
 	{
 		ChangeAnimationState("Double_Jump");
@@ -287,6 +287,13 @@ void Player::BatModeUpdate(float _Delta)
 		float4 Pos = MainPlayer->GetPos();
 		MainPlayer->SetPos({ Pos.X, Pos.Y - 50.0f });
 		BatStart = false;
+		return;
+	}
+	if (true == GameEngineInput::IsDown('B'))
+	{
+		ChanageState(PlayerState::Idle);
+
+		MainRenderer->SetRenderScale({ 900.0f, 900.0f });
 		return;
 	}
 
