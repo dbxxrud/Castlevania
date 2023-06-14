@@ -129,8 +129,8 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Attack", "Player_Left_Attack.bmp", 0, 13, 0.05f, false);
 		MainRenderer->CreateAnimation("Right_Attack", "Player_Right_Attack.bmp", 0, 13, 0.05f, false);
 
-		MainRenderer->CreateAnimation("Left_DuckingAttack", "Player_Left_DuckingAttack.bmp", 0, 13, 0.9f, false);
-		MainRenderer->CreateAnimation("Right_DuckingAttack", "Player_Right_DuckingAttack.bmp", 0, 13, 0.9f, false);
+		MainRenderer->CreateAnimation("Left_DuckingAttack", "Player_Left_DuckingAttack.bmp", 0, 13, 0.05f, false);
+		MainRenderer->CreateAnimation("Right_DuckingAttack", "Player_Right_DuckingAttack.bmp", 0, 13, 0.05f, false);
 
 		MainRenderer->CreateAnimation("Left_BatModeStart", "Player_Left_Bat.bmp", 0, 29,0.1f, true);
 		MainRenderer->CreateAnimation("Right_BatModeStart", "Player_Right_Bat.bmp", 0, 29, 0.1f,true);
