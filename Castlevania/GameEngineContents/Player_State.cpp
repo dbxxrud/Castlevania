@@ -18,6 +18,8 @@ void Player::RunStart()
 
 void Player::JumpStart()
 {
+	SetGravityVector(float4::UP * 1000.0f);
+
 	ChangeAnimationState("Jump");
 }
 
@@ -194,26 +196,19 @@ void Player::RunUpdate(float _Delta)
 
 void Player::JumpUpdate(float _Delta)
 {
-	float JumpPower = 4.0f;
-	float DoubleJumpPower = 6.4f;
-	float MoveSpeed = 200.0f;
-	
 	float4 MovePos = float4::ZERO;
-
-	MovePos += float4::UP * JumpPower;
-
-	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
+	if (true == GameEngineInput::IsPress('A'))
 	{
-		ChangeAnimationState("Move_Jump");
-		MovePos += float4::LEFT * JumpPower;
+		MovePos += float4::LEFT * _Delta * 300.0f;
 	}
 
-	if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
+	if (true == GameEngineInput::IsPress('D'))
 	{
-		ChangeAnimationState("Move_Jump");
-
-		MovePos += float4::RIGHT * JumpPower;
+		MovePos += float4::RIGHT * _Delta * 300.0f;
 	}
+
+	AddPos(MovePos);
+
 	// 더블점프 -> 안되는중
 	if (IsJump == true && GameEngineInput::IsDown(VK_SPACE))
 	{
@@ -223,7 +218,9 @@ void Player::JumpUpdate(float _Delta)
 	}
 
 
-	AddPos(MovePos);
+	//AddPos(MovePos);
+
+
 	Gravity(_Delta); // 점프하고 끌어내려
 
 	// 점프하고 내 아래 픽셀이 허공이라면 fall 상태로..

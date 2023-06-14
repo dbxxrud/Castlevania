@@ -25,7 +25,7 @@ void PlayActor::Gravity(float _Delta)
 	// 시간이 지날수록 중력의 가속도가 증가
 	GravityVector += float4::DOWN * GravityPower * _Delta; // 중력증가
 
-	AddPos(GravityVector);
+	AddPos(GravityVector * _Delta);
 }
 
 void PlayActor::CameraFocus()
