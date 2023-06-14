@@ -54,7 +54,7 @@ private:
 
 	//float GravityPower = 8.0f; // 떨어지는 속력이 다르다면~
 
-	float JumpPower = 20.0f;
+	float JumpPower = 10.0f;
 
 	// 맨 처음 모든 중력은 제로 그러다가 끌어당기면 걔한테 끌려감
 	float4 GravityVector = float4::ZERO;
