@@ -43,7 +43,7 @@ public:
 	// 내 위치에서 땅에 닿았는지 안닿았는지
 	int GetGroundColor(unsigned int _DefaultColor, float4 _Pos = float4::ZERO);
 
-	float GravityPower = 8.0f; // 떨어지는 속력이 다르다면~
+	float GravityPower = 2000.0f; // 떨어지는 속력이 다르다면~
 
 protected:
 
