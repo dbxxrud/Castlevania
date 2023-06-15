@@ -19,7 +19,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #pragma endregion
 
-Player* Player::MainPlayer = nullptr;
+Player* Player::MainPlayer = nullptr; // 플레이어를 알수있도록
 
 Player::Player()
 {
@@ -149,7 +149,7 @@ void Player::Start()
 		// 충돌체 생성
 		BodyCollsion = CreateCollision(CollisionOrder::PlayerBody);
 		BodyCollsion->SetCollisionScale({ 100, 300 });
-		//BodyCollsion->SetCollisionType(CollisionType::Rect);
+		BodyCollsion->SetCollisionType(CollisionType::Rect);
 	}
 
 
@@ -192,11 +192,11 @@ void Player::Update(float _Delta)
 	//	// Monster::AllMonsterDeath();
 	//}
 
-	//if (true == GameEngineInput::IsPress('Y'))
-	//{
-	//	GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(-1.0f * _Delta);
-	//	// GameEngineLevel::CollisionDebugRenderSwitch();
-	//}
+	if (true == GameEngineInput::IsPress('Y'))
+	{
+		GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(-1.0f * _Delta);
+		GameEngineLevel::CollisionDebugRenderSwitch();
+	}
 	StateUpdate(_Delta);
 
 	CameraFocus(); // 카메라 중앙으로 옴 플레이어는 0,0에 있는거임

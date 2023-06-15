@@ -6,12 +6,13 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineContents/PlayUIManager.h>
 #include <GameEngineCore/GameEngineActor.h>
-#include "Monster.h"
 
 
 
 // Contents
 #include "Player.h"
+#include "Monster.h"
+#include "Item.h"
 #include "PlayActor.h"
 #include "Map.h"
 
@@ -46,6 +47,16 @@ void MainStageLevel::Start()
 	
 	LevelPlayer = CreateActor<Player>();
 	LevelPlayer->SetGroundTexture("MapPixel.bmp");
+
+	Monster* BladeMaster = CreateActor<Monster>();
+	BladeMaster->SetGroundTexture("MapPixel.bmp");
+	BladeMaster->SetPos({ 8450 , 1500 });
+
+	Item* ItemFire = CreateActor<Item>();
+	ItemFire->SetPos({ 9750, 1490 });
+
+
+
 
 	LevelPlayer->OverOn(); // ? ¸ÓÁö
 

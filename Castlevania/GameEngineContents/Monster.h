@@ -1,15 +1,15 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "PlayActor.h"
 
 enum class Monsters
 {
 	M_BladeMaster,
-	M,
+	
 
 };
 
 // Ό³Έν :
-class Monster : public GameEngineActor
+class Monster : public PlayActor
 {
 private:
 	static std::list<Monster*> AllMonster;
@@ -27,6 +27,9 @@ public:
 	Monster(Monster&& _Other) noexcept = delete;
 	Monster& operator=(const Monster& _Other) = delete;
 	Monster& operator=(Monster&& _Other) noexcept = delete;
+
+	GameEngineRenderer* BladeMasterRenderer = nullptr;
+
 
 protected:
 

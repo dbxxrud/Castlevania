@@ -33,8 +33,6 @@ void PlayActor::CameraFocus()
 	
 	float4 WindowScale = GameEngineWindow::MainWindow.GetScale();
 	GetLevel()->GetMainCamera()->SetPos(GetPos() + float4{ -WindowScale.hX(), -WindowScale.hY() });
-
-	
 }
 
 void PlayActor::SetGroundTexture(const std::string& _GroundTextureName)
@@ -52,6 +50,7 @@ void PlayActor::SetGroundTexture(const std::string& _GroundTextureName)
 float4 PlayActor::ActorCameraPos()
 {
 	return GetPos() - GetLevel()->GetMainCamera()->GetPos();
+
 }
 
 int PlayActor::GetGroundColor(unsigned int _DefaultColor, float4 _Pos)

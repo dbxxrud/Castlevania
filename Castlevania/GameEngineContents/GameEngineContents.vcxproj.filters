@@ -34,6 +34,9 @@
     <ClInclude Include="PlayUIManager.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -68,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="PlayUIManager.cpp">
       <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_State.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

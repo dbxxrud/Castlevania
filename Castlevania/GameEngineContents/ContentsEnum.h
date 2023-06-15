@@ -9,12 +9,14 @@ enum class UpdateOrder
 enum class RenderOrder
 {
 	BackGround,
+	Item,
 	Play,
 	PlayUI
 };
 
 enum class CollisionOrder
 {
+	Camera,
 	Map,
 	Potal,
 	PlayerBody,

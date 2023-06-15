@@ -28,21 +28,6 @@ void Monster::AllMonsterDeath()
 	AllMonster.clear();
 }
 
-void Monster::Update(float _Delta)
-{
-	// Player::MainPlayer = nullptr;
-
-	float4 Dir = Player::MainPlayer->GetPos() - GetPos();
-
-	Dir.Normalize();
-
-	// Dir <= 거리가 일정하지 않다는 게 문제에요.
-
-	// Dir *= 0.1f;
-
-	AddPos(Dir * _Delta * 100.0f);
-}
-
 void Monster::Start()
 {
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
@@ -50,17 +35,34 @@ void Monster::Start()
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("ContentsResources");
-		FilePath.MoveChild("ContentsResources\\Texture\\Player\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
+		FilePath.MoveChild("ContentsResources\\Texture\\Monster\\");
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("M_BladeMaster.bmp"), 5, 9);
+
+
+		{
+			BladeMasterRenderer = CreateRenderer(RenderOrder::Play);
+			BladeMasterRenderer->CreateAnimation("Right_Idle", "M_BladeMaster.bmp", 0, 2, 0.5f, true);
+			BladeMasterRenderer->CreateAnimation("Right_Run", "M_BladeMaster.bmp", 3, 4, 0.5f, true);
+			BladeMasterRenderer->ChangeAnimation("Right_Idle");
+
+			BladeMasterRenderer->SetRenderScale({ 450.0f, 450.0f });
+
+		}
 	}
 
-	{
-		GameEngineRenderer* Ptr = CreateRenderer("HPBar.bmp", RenderOrder::Play);
-		Ptr->SetRenderScale({ 150, 150 });
-		Ptr->SetTexture("HPBar.bmp");
-	}
+}
 
-	GameEngineCollision* BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
-	BodyCollision->SetCollisionScale({ 100, 100 });
+void Monster::Update(float _Delta)
+{
+	// Player::MainPlayer = nullptr;
+
+	//float4 Dir = Player::MainPlayer->GetPos() - GetPos();
+
+	//Dir.Normalize();
+
+	//// Dir <= 거리가 일정하지 않다는 게 문제에요.
+
+	//// Dir *= 0.1f;
+
+	//AddPos(Dir * _Delta * 100.0f);
 }
