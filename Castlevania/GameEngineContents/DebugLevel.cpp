@@ -41,14 +41,37 @@ void DebugLevel::Start()
 	DebugRoomPtr = CreateActor<Map>();
 	DebugRoomPtr->Init("DebugRoom.Bmp", "DebugRoomPixel.bmp");
 
-	//LevelPlayer = CreateActor<Player>();
-	//LevelPlayer->SetGroundTexture("TestMapPixel.bmp");
+	DebugLevelPlayer = CreateActor<Player>();
+	DebugLevelPlayer->SetGroundTexture("DebugRoomPixel.bmp");
+
+	DebugLevelPlayer->SetPos({ 1000 , 1500 });
+
+	DebugLevelPlayer->OverOn();
 }
 
 void DebugLevel::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown('P'))
 	{
-		GameEngineCore::ChangeLevel("PlayLevel");
+		GameEngineCore::ChangeLevel("MainStageLevel");
 	}
+
+	if (true == GameEngineInput::IsDown('J'))
+	{
+		DebugRoomPtr->SwitchRender();
+	}
+
+}
+void DebugLevel::LevelStart(GameEngineLevel* _PrevLevel)
+{
+	if (nullptr == DebugLevelPlayer)
+	{
+		MsgBoxAssert("플레이어를 세팅하지 않았습니다.");
+	}
+}
+
+void DebugLevel::LevelEnd(GameEngineLevel* _NextLevel)
+{
+	DebugLevelPlayer->SetPos({ 10400,1500 });
+
 }

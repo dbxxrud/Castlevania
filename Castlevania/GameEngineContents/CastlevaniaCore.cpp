@@ -28,6 +28,7 @@ void CastlevaniaCore::Start()
 
 void CastlevaniaCore::Update(float _Delta)
 {
+
 }
 
 void CastlevaniaCore::Render(float _Delta)

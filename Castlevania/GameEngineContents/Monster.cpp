@@ -54,7 +54,7 @@ void Monster::Start()
 
 void Monster::Update(float _Delta)
 {
-	// Player::MainPlayer = nullptr;
+	//Player::MainPlayer = nullptr;
 
 	//float4 Dir = Player::MainPlayer->GetPos() - GetPos();
 

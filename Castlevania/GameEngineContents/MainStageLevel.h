@@ -26,7 +26,7 @@ private:
 	void Release() override;
 
 	class Map* BackGroundPtr;
-	class Player* LevelPlayer = nullptr;
+	class Player* LevelPlayer;
 	class GameEngineCollision* CameraCollision;
 
 };

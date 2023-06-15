@@ -15,12 +15,17 @@ public:
 	DebugLevel& operator=(const DebugLevel& _Other) = delete;
 	DebugLevel& operator=(DebugLevel&& _Other) noexcept = delete;
 
+
 protected:
-	void Start() override;
-	void Update(float _Delta) override;
+	void LevelStart(GameEngineLevel* _PrevLevel) override;
+	void LevelEnd(GameEngineLevel* _NextLevel) override;
+
 
 private:
 	class Map* DebugRoomPtr;
-	class Player* LevelPlayer = nullptr;
+	class Player* DebugLevelPlayer = nullptr;
+
+	void Start() override;
+	void Update(float _Delta) override;
 };
 

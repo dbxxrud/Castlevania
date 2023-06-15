@@ -9,11 +9,13 @@
 
 
 
+
 // Contents
 #include "Player.h"
 #include "Monster.h"
 #include "Item.h"
 #include "PlayActor.h"
+#include "DebugLevel.h"
 #include "Map.h"
 
 MainStageLevel::MainStageLevel()
@@ -45,25 +47,25 @@ void MainStageLevel::Start()
 	BackGroundPtr = CreateActor<Map>();
 	BackGroundPtr->Init("Map.Bmp", "MapPixel.bmp");
 	
-	LevelPlayer = CreateActor<Player>();
-	LevelPlayer->SetGroundTexture("MapPixel.bmp");
+	//LevelPlayer = CreateActor<Player>();
+	//LevelPlayer->SetGroundTexture("MapPixel.bmp");
 
 	Monster* BladeMaster = CreateActor<Monster>();
 	BladeMaster->SetGroundTexture("MapPixel.bmp");
+
 	BladeMaster->SetPos({ 8450 , 1500 });
 
 	Item* ItemFire = CreateActor<Item>();
 	ItemFire->SetPos({ 9750, 1490 });
 
-
-
-
-	LevelPlayer->OverOn(); // ? 머지
-
-	LevelPlayer->SetPos({ 10400,1500 }); // 레벨1 초반위치
+	//LevelPlayer->OverOn(); // ? 머지
+	
+	//DebugLevel* Player;
+	//LevelPlayer->SetPos({ 10400,1500 }); // 레벨1 초반위치
 
 	CreateActor<PlayUIManager>();
 
+	
 }
 
 void MainStageLevel::Update(float _Delta)
@@ -103,10 +105,16 @@ void MainStageLevel::Release()
 
 void MainStageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	if (nullptr == LevelPlayer)
-	{
-		MsgBoxAssert("플레이어를 세팅하지 않았습니다.");
-	}
+	//if (nullptr == LevelPlayer)
+	//{
+	//	MsgBoxAssert("플레이어를 세팅하지 않았습니다.");
+	//}
+	//LevelPlayer->SetGroundTexture("MapPixel.bmp");
+
+	LevelPlayer = Player::MainPlayer;
+
+	LevelPlayer->SetGroundTexture("MapPixel.bmp");
+
 }
 
 void MainStageLevel::LevelEnd(GameEngineLevel* _NextLevel)
