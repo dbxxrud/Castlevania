@@ -11,6 +11,7 @@
 
 // Contents
 #include "Player.h"
+#include "PlayActor.h"
 
 // 타이틀레벨 -> 디버그 레벨로 돌려
 DebugLevel::DebugLevel()
@@ -41,12 +42,12 @@ void DebugLevel::Start()
 	DebugRoomPtr = CreateActor<Map>();
 	DebugRoomPtr->Init("DebugRoom.Bmp", "DebugRoomPixel.bmp");
 
-	DebugLevelPlayer = CreateActor<Player>();
-	DebugLevelPlayer->SetGroundTexture("DebugRoomPixel.bmp");
+	LevelPlayer = CreateActor<Player>();
+	LevelPlayer->SetGroundTexture("DebugRoomPixel.bmp");
 
-	DebugLevelPlayer->SetPos({ 1000 , 1500 });
+	LevelPlayer->SetPos({ 1000 , 1500 });
 
-	DebugLevelPlayer->OverOn();
+	LevelPlayer->OverOn();
 }
 
 void DebugLevel::Update(float _Delta)
@@ -60,11 +61,10 @@ void DebugLevel::Update(float _Delta)
 	{
 		DebugRoomPtr->SwitchRender();
 	}
-
 }
 void DebugLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	if (nullptr == DebugLevelPlayer)
+	if (nullptr == LevelPlayer)
 	{
 		MsgBoxAssert("플레이어를 세팅하지 않았습니다.");
 	}
@@ -72,6 +72,6 @@ void DebugLevel::LevelStart(GameEngineLevel* _PrevLevel)
 
 void DebugLevel::LevelEnd(GameEngineLevel* _NextLevel)
 {
-	DebugLevelPlayer->SetPos({ 10400,1500 });
+	LevelPlayer->SetPos({ 10400,1500 });
 
 }

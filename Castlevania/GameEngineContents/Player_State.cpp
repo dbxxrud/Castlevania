@@ -5,6 +5,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include <GameEngineCore/GameEngineCore.h>
 
 void Player::IdleStart()
 {
@@ -57,7 +58,7 @@ void Player::IdleUpdate(float _Delta)
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color)
 		{
-			Gravity(_Delta);
+			Gravity(_Delta);// 흰바탕이면 중력적용
 		}
 		else
 		{
@@ -157,10 +158,10 @@ void Player::RunUpdate(float _Delta)
 
 		MovePos = { MoveSpeed * _Delta, 0.0f };
 	}
-	if (true == GameEngineInput::IsPress('S'))
-	{
-		MovePos = { 0.0f, MoveSpeed * _Delta };
-	}
+	//if (true == GameEngineInput::IsPress('S'))
+	//{
+	//	MovePos = { 0.0f, MoveSpeed * _Delta };
+	//}
 
 	if (true == GameEngineInput::IsDown(VK_SPACE))
 	{
@@ -178,6 +179,7 @@ void Player::RunUpdate(float _Delta)
 	}
 
 	{
+		// 흰색이면 움직여라 못가게 막는코드
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
 
 		if (Color == RGB(255, 255, 255))
@@ -192,6 +194,8 @@ void Player::RunUpdate(float _Delta)
 		ChanageState(PlayerState::Attack);
 		return;
 	}
+
+
 }
 
 void Player::JumpUpdate(float _Delta)
@@ -212,16 +216,17 @@ void Player::JumpUpdate(float _Delta)
 	// 더블점프 -> 안되는중
 	if (IsJump == true && GameEngineInput::IsDown(VK_SPACE))
 	{
+		SetGravityVector(float4::UP * 1000.0f);
+
 		ChangeAnimationState("Double_Jump");
-		
+
 		IsJump = false;
 	}
 
 
-	//AddPos(MovePos);
+	Gravity(_Delta);
 
 
-	Gravity(_Delta); // 점프하고 끌어내려
 
 	// 점프하고 내 아래 픽셀이 허공이라면 fall 상태로..
 	{
@@ -229,9 +234,11 @@ void Player::JumpUpdate(float _Delta)
 
 		if (Color != RGB(255, 255, 255))
 		{
+			 // 땅에 땋으면
 			ChanageState(PlayerState::Idle);
 			return;
 		}
+		
 	}
 
 }

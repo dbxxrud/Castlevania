@@ -60,6 +60,6 @@ int PlayActor::GetGroundColor(unsigned int _DefaultColor, float4 _Pos)
 	{
 		MsgBoxAssert("땅 체크용 텍스처가 존재하지 않습니다.");
 	}
-
+	// 플레이어 위치 색깔 리턴함
 	return GroundTexture->GetColor(_DefaultColor, GetPos() + _Pos);
 }

@@ -23,7 +23,7 @@ protected:
 
 private:
 	class Map* DebugRoomPtr;
-	class Player* DebugLevelPlayer = nullptr;
+	class Player* LevelPlayer = nullptr;
 
 	void Start() override;
 	void Update(float _Delta) override;

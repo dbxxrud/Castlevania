@@ -74,10 +74,7 @@ void MainStageLevel::Update(float _Delta)
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
-	if (true == GameEngineInput::IsDown('P'))
-	{
-		GameEngineCore::ChangeLevel("Stage2Level");
-	}
+
 	if (true == GameEngineInput::IsDown('J'))
 	{
 		BackGroundPtr->SwitchRender(); 

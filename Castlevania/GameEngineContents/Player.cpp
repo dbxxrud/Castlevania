@@ -122,8 +122,8 @@ void Player::Start()
 
 
 
-		MainRenderer->CreateAnimation("Left_Falling", "Player_Left_Falling.bmp", 0, 13, 0.1f, true);
-		MainRenderer->CreateAnimation("Right_Falling", "Player_Right_Falling.bmp", 0, 13, 0.1f, true);
+		MainRenderer->CreateAnimation("Left_Falling", "Player_Left_Falling.bmp", 0, 13, 0.1f, false);
+		MainRenderer->CreateAnimation("Right_Falling", "Player_Right_Falling.bmp", 0, 13, 0.1f, false);
 
 
 		MainRenderer->CreateAnimation("Left_Attack", "Player_Left_Attack.bmp", 0, 13, 0.05f, false);
