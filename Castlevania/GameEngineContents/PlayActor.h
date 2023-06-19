@@ -40,6 +40,12 @@ public:
 		GravityVector = _GravityVector;
 	}
 
+	float4 GetGravityVector()
+	{
+		GravityVector.Y > 0.0f;
+		return GravityVector;
+	}
+
 	// 내 위치에서 땅에 닿았는지 안닿았는지
 	int GetGroundColor(unsigned int _DefaultColor, float4 _Pos = float4::ZERO);
 

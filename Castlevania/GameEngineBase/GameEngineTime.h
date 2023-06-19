@@ -1,6 +1,8 @@
 #pragma once
 #include <Windows.h>
-// 설명 : 
+#include <map>
+
+// 설명 :
 class GameEngineTime
 {
 public:
@@ -21,8 +23,44 @@ public:
 		return FloatDelta;
 	}
 
-	void Update();
 	void Reset();
+
+	void Update();
+
+	template<typename EnumType>
+	float GetTimeScale(EnumType _Order)
+	{
+		return GetTimeScale(static_cast<int>(_Order));
+	}
+
+	float GetTimeScale(int _Order)
+	{
+		if (TimeScale.end() == TimeScale.find(_Order))
+		{
+			TimeScale[_Order] = 1.0f;
+		}
+
+		return TimeScale[_Order];
+	}
+
+	template<typename EnumType>
+	void SetTimeScale(EnumType _Order, float _TimeScale)
+	{
+		SetTimeScale(static_cast<int>(_Order), _TimeScale);
+	}
+
+	void SetTimeScale(int _Order, float _TimeScale)
+	{
+		TimeScale[_Order] = _TimeScale;
+	}
+
+	void SetAllTimeScale(float _TimeScale)
+	{
+		for (std::pair<const int, float>& Order : TimeScale)
+		{
+			Order.second = _TimeScale;
+		}
+	}
 
 protected:
 
@@ -31,6 +69,9 @@ private:
 	LARGE_INTEGER Cur = { 0 };
 	LARGE_INTEGER Prev = { 0 };
 	__int64 Tick;
-	double DoubleDelta; // 한 번의 프레임이 지날때 시간
+	double DoubleDelta;
 	float FloatDelta;
+
+	// int 오브젝트의 업데이트 오더
+	std::map<int, float> TimeScale;
 };

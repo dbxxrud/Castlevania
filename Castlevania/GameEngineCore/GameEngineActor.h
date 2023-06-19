@@ -122,5 +122,5 @@ private:
 	std::list<GameEngineCollision*> AllCollision;
 
 	void ActorRelease();
+	void SubObjectUpdate(float _DeltaTime);
 };
-

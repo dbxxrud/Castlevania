@@ -17,6 +17,8 @@
 #include "PlayActor.h"
 #include "DebugLevel.h"
 #include "Map.h"
+#include "FadeObject.h"
+
 
 MainStageLevel::MainStageLevel()
 {
@@ -76,6 +78,9 @@ void MainStageLevel::Start()
 
 	CreateActor<PlayUIManager>();
 
+	{
+		FadeObject* FObject = CreateActor<FadeObject>();
+	}
 	
 }
 

@@ -1,17 +1,16 @@
 #include "GameEngineTime.h"
 #include <Windows.h>
 
-
 GameEngineTime GameEngineTime::MainTimer;
 
-GameEngineTime::GameEngineTime() 
+GameEngineTime::GameEngineTime()
 {
 	QueryPerformanceFrequency(&Count); // 1초에 이 컴퓨터는 천만을 셀 수 있다
 	// 8바이트를 넘겨서 8바이트 메모리를 수정해줌
 	Reset();
 }
 
-GameEngineTime::~GameEngineTime() 
+GameEngineTime::~GameEngineTime()
 {
 }
 

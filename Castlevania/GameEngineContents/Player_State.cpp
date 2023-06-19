@@ -188,6 +188,14 @@ void Player::RunUpdate(float _Delta)
 			GetLevel()->GetMainCamera()->AddPos(MovePos);
 		}
 	}
+	{
+		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+
+		if (Color == RGB(0, 0, 255))
+		{
+			GameEngineCore::ChangeLevel("MainStageLevel");
+		}
+	}
 
 	if (true == GameEngineInput::IsPress(VK_LBUTTON))
 	{

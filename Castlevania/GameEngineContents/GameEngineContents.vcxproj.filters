@@ -37,6 +37,9 @@
     <ClInclude Include="Item.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="FadeObject.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -76,6 +79,9 @@
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="Monster_State.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeObject.cpp">
       <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
