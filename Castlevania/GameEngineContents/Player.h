@@ -71,7 +71,7 @@ public:
 
 	bool IsJump = false;
 	bool BatStart = false;
-
+	bool IsTurn = true;
 
 
 	int TestValue = 0;

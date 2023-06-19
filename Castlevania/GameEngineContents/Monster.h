@@ -8,6 +8,13 @@ enum class Monsters
 
 };
 
+enum class MonsterDir
+{
+	Right,
+	Left,
+	Max,
+};
+
 // Ό³Έν :
 class Monster : public PlayActor
 {
@@ -29,7 +36,19 @@ public:
 	Monster& operator=(Monster&& _Other) noexcept = delete;
 
 	GameEngineRenderer* BladeMasterRenderer = nullptr;
+	//GameEngineRenderer* BladeMasterRenderer2 = nullptr;
 
+
+	//GameEngineRenderer* ArmorLordRenderer = nullptr;
+
+	void IdleStart();
+	void RunStart();
+	void JumpStart();
+	void AttackStart();
+
+	void ChangeAnimationState(const std::string& _StateName);
+
+	MonsterDir Dir = MonsterDir::Right;
 
 protected:
 

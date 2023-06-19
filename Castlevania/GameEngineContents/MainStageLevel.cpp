@@ -50,13 +50,24 @@ void MainStageLevel::Start()
 	//LevelPlayer = CreateActor<Player>();
 	//LevelPlayer->SetGroundTexture("MapPixel.bmp");
 
-	Monster* BladeMaster = CreateActor<Monster>();
-	BladeMaster->SetGroundTexture("MapPixel.bmp");
+	//Monster* BladeMaster = CreateActor<Monster>();
+	//Monster* BladeMaster = CreateActor<Monster>();
 
-	BladeMaster->SetPos({ 8450 , 1500 });
+	// Monster* BladeMaster2 = CreateActor<Monster>();
+	//Monster* BladeMaster2 = CreateActor<Monster>();
+
+	//BladeMaster->SetGroundTexture("MapPixel.bmp");
+	//BladeMaster2->SetGroundTexture("MapPixel.bmp");
+
+	//BladeMaster->SetPos({ 8450 , 1500 });
+	//BladeMaster2->SetPos({ 10400,1500 });
+
+
+	
 
 	Item* ItemFire = CreateActor<Item>();
 	ItemFire->SetPos({ 9750, 1490 });
+
 
 	//LevelPlayer->OverOn(); // ? ¸ÓÁö
 	
@@ -79,8 +90,12 @@ void MainStageLevel::Update(float _Delta)
 	{
 		BackGroundPtr->SwitchRender(); 
 	}
-
-
+	if (1.0f <= GetLiveTime())
+	{
+		Monster* NewMonster = CreateActor<Monster>();
+		NewMonster->SetPos({ 10400,1500 });
+		ResetLiveTime();
+	}
 	//PlayActor Color;
 
 	//if (RGB(0, 0, 255) == Color.GetGroundColor(RGB(0, 0, 255)))

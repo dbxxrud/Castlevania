@@ -98,6 +98,11 @@ void GameEngineLevel::ActorRender(float _Delta)
 
 			for (GameEngineCollision* Collision : Group)
 			{
+				if (false == Collision->IsUpdate())
+				{
+					continue;
+				}
+
 				Collision->DebugRender();
 			}
 
@@ -170,9 +175,9 @@ void GameEngineLevel::CollisionRelease()
 void GameEngineLevel::ActorRelease()
 {
 	MainCamera->Release();
+	UICamera->Release();
 
 	CollisionRelease();
-
 
 	// 구조가 바뀔겁니다.
 	{
@@ -219,6 +224,7 @@ void GameEngineLevel::ActorRelease()
 
 void GameEngineLevel::ActorLevelEnd()
 {
+	// 업데이트랑 별개로 꺼져있어도 돌아야 한다.
 	for (const std::pair<int, std::list<GameEngineActor*>>& _Pair : AllActors)
 	{
 		const std::list<GameEngineActor*>& Group = _Pair.second;
@@ -231,6 +237,7 @@ void GameEngineLevel::ActorLevelEnd()
 }
 void GameEngineLevel::ActorLevelStart()
 {
+	// 업데이트랑 별개로 꺼져있어도 돌아야 한다.
 	for (const std::pair<int, std::list<GameEngineActor*>>& _Pair : AllActors)
 	{
 		const std::list<GameEngineActor*>& Group = _Pair.second;

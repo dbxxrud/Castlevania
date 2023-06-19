@@ -19,16 +19,18 @@ public:
 	GameEngineActorSubObject& operator=(const GameEngineActorSubObject& _Other) = delete;
 	GameEngineActorSubObject& operator=(GameEngineActorSubObject&& _Other) noexcept = delete;
 
-
-	bool IsDeath() override; // 콜리전과 렌더러의 공통기능
+	bool IsDeath() override;
+	bool IsUpdate() override;
 
 	GameEngineActor* GetActor()
 	{
 		return Master;
 	}
 
+
 protected:
 
 private:
 	GameEngineActor* Master = nullptr;
 };
+

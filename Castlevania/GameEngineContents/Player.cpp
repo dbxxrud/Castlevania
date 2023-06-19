@@ -16,6 +16,7 @@
 #include <GameEngineCore/GameEngineCore.h>
 
 #include "PlayUIManager.h"
+#include "Monster.h"
 #include <GameEnginePlatform/GameEngineInput.h>
 #pragma endregion
 
@@ -104,8 +105,8 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Run", "Player_Left_Move.bmp", 15, 30, 0.05f, true);
 		MainRenderer->CreateAnimation("Right_Run", "Player_Right_Move.bmp", 15, 30, 0.05f, true);
 
-		MainRenderer->CreateAnimation("Left_Turning", "Player_Left_Turning.bmp", 0, 9, 0.05f, false);
-		MainRenderer->CreateAnimation("Right_Turning", "Player_Right_Turning.bmp", 0, 9, 0.05f, false);
+		MainRenderer->CreateAnimation("Left_Turning", "Player_Left_Turning.bmp", 0, 9, 0.1f, false);
+		MainRenderer->CreateAnimation("Right_Turning", "Player_Right_Turning.bmp", 0, 9, 0.1f, false);
 
 		MainRenderer->CreateAnimation("Left_Jump", "Player_Left_Jump.bmp", 0, 5, 0.15f, true);
 		MainRenderer->CreateAnimation("Right_Jump", "Player_Right_Jump.bmp", 0, 5, 0.2f, true);
@@ -197,6 +198,19 @@ void Player::Update(float _Delta)
 		GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(-1.0f * _Delta);
 		GameEngineLevel::CollisionDebugRenderSwitch();
 	}
+
+	if (true == GameEngineInput::IsPress('L'))
+	{
+		// GameEngineSound::SoundLoad("C:\\AAAA\\AAAA\\A\\AAA.Mp3");
+		// GameEngineSound::SoundPlay("AAA.Mp3");
+		// GameEngineSound::PlayBgm("AAA.Mp3");
+		// GameEngineSound::StopBgm("AAA.Mp3");
+
+		GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(1.0f * _Delta);
+
+		Monster::AllMonsterDeath();
+	}
+
 	StateUpdate(_Delta);
 
 	CameraFocus(); // 카메라 중앙으로 옴 플레이어는 0,0에 있는거임
@@ -268,22 +282,17 @@ void Player::ChanageState(PlayerState _State)
 
 void Player::DirCheck()
 {
+	
 	if (true == GameEngineInput::IsFree('A') && true == GameEngineInput::IsFree('D'))
 	{
 		return;
 	}
 
-	// A가 눌렸거나 D가 프리이라면 Left로 방향전환 인데 가만히있어도 Left를 바라보는 현상이 생김.
+	// 방향이 전환되는 순간
 	if (true == GameEngineInput::IsDown('A') || true == GameEngineInput::IsFree('D'))
 	{
 		Dir = PlayerDir::Left;
-		/*ChangeAnimationState("Player_Left_Turning.bmp");
-		if (MainRenderer->IsAnimationEnd())
-		{
-			ChangeAnimationState(CurState);
-		}*/
 		ChangeAnimationState(CurState);
-
 		return;
 	}
 
@@ -292,10 +301,9 @@ void Player::DirCheck()
 	{
 		Dir = PlayerDir::Right;
 		ChangeAnimationState(CurState);
-
-
 		return;
 	}
+
 }
 
 void Player::ChangeAnimationState(const std::string& _StateName)
@@ -370,9 +378,9 @@ void Player::Render(float _Delta)
 	//Data.Pos = ActorCameraPos() + RightCheck;
 	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 
-	std::string MouseText = "MousePosition : \n";
-	MouseText += GameEngineWindow::MainWindow.GetMousePos().ToString();
-	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
-	TextOutA(dc, 2, 3, MouseText.c_str(), MouseText.size());
+	//std::string MouseText = "MousePosition : \n";
+	//MouseText += GameEngineWindow::MainWindow.GetMousePos().ToString();
+	//HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
+	//TextOutA(dc, 2, 3, MouseText.c_str(), MouseText.size());
 
 }
