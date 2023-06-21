@@ -108,8 +108,8 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Left_Turning", "Player_Left_Turning.bmp", 0, 9, 0.1f, false);
 		MainRenderer->CreateAnimation("Right_Turning", "Player_Right_Turning.bmp", 0, 9, 0.1f, false);
 
-		MainRenderer->CreateAnimation("Left_Jump", "Player_Left_Jump.bmp", 0, 5, 0.15f, true);
-		MainRenderer->CreateAnimation("Right_Jump", "Player_Right_Jump.bmp", 0, 5, 0.2f, true);
+		MainRenderer->CreateAnimation("Left_Jump", "Player_Left_Jump.bmp", 0, 5, 0.08f, true);
+		MainRenderer->CreateAnimation("Right_Jump", "Player_Right_Jump.bmp", 0, 5, 0.08f, true);
 
 		MainRenderer->CreateAnimation("Left_Move_Jump", "Player_Left_Jump.bmp", 6, 9, 0.15f, true);
 		MainRenderer->CreateAnimation("Right_Move_Jump", "Player_Right_Jump.bmp", 6, 9, 0.15f, true);
@@ -123,8 +123,8 @@ void Player::Start()
 
 
 
-		MainRenderer->CreateAnimation("Left_Falling", "Player_Left_Falling.bmp", 0, 13, 0.1f, false);
-		MainRenderer->CreateAnimation("Right_Falling", "Player_Right_Falling.bmp", 0, 13, 0.1f, false);
+		MainRenderer->CreateAnimation("Left_Falling", "Player_Left_Falling.bmp", 0, 8, 0.05f, false);
+		MainRenderer->CreateAnimation("Right_Falling", "Player_Right_Falling.bmp", 0, 8, 0.05f, false);
 
 
 		MainRenderer->CreateAnimation("Left_Attack", "Player_Left_Attack.bmp", 0, 13, 0.05f, false);
@@ -178,8 +178,6 @@ void Player::Update(float _Delta)
 		// 나는 몬스터랑 충돌한거야.
 	}
 
-	/*GameEngineRenderer* Ptr = CreateRenderer("Fade", 6000);
-		Ptr->SetRenderScale({ 1280, 720 });*/
 
 	//if (true == GameEngineInput::IsPress('L'))
 	//{

@@ -18,6 +18,8 @@
 #include "DebugLevel.h"
 #include "Map.h"
 #include "FadeObject.h"
+#include "ContentsEnum.h"
+
 
 
 MainStageLevel::MainStageLevel()
@@ -48,40 +50,22 @@ void MainStageLevel::Start()
 
 	BackGroundPtr = CreateActor<Map>();
 	BackGroundPtr->Init("Map.Bmp", "MapPixel.bmp");
-	
-	//LevelPlayer = CreateActor<Player>();
-	//LevelPlayer->SetGroundTexture("MapPixel.bmp");
 
-	//Monster* BladeMaster = CreateActor<Monster>();
-	//Monster* BladeMaster = CreateActor<Monster>();
-
-	// Monster* BladeMaster2 = CreateActor<Monster>();
-	//Monster* BladeMaster2 = CreateActor<Monster>();
-
-	//BladeMaster->SetGroundTexture("MapPixel.bmp");
-	//BladeMaster2->SetGroundTexture("MapPixel.bmp");
-
-	//BladeMaster->SetPos({ 8450 , 1500 });
-	//BladeMaster2->SetPos({ 10400,1500 });
-
-
-	
 
 	Item* ItemFire = CreateActor<Item>();
 	ItemFire->SetPos({ 9750, 1490 });
 
+	// 몬스터 생성
+	Monster* BladeMaster = CreateActor<Monster>(UpdateOrder::Monster);
+	BladeMaster->SetPos({ 8300 , 1450 });
 
-	//LevelPlayer->OverOn(); // ? 머지
-	
-	//DebugLevel* Player;
-	//LevelPlayer->SetPos({ 10400,1500 }); // 레벨1 초반위치
+	BladeMaster->SetGroundTexture("MapPixel.bmp");
 
 	CreateActor<PlayUIManager>();
 
 	{
 		FadeObject* FObject = CreateActor<FadeObject>();
 	}
-	
 }
 
 void MainStageLevel::Update(float _Delta)
@@ -95,12 +79,18 @@ void MainStageLevel::Update(float _Delta)
 	{
 		BackGroundPtr->SwitchRender(); 
 	}
-	if (1.0f <= GetLiveTime())
-	{
-		Monster* NewMonster = CreateActor<Monster>();
-		NewMonster->SetPos({ 10400,1500 });
-		ResetLiveTime();
-	}
+
+
+	//if (1.0f <= GetLiveTime())
+	//{
+	//	Monster* NewMonster = CreateActor<Monster>(UpdateOrder::Monster);
+
+	//	NewMonster->SetPos({ 10400,1500 });
+
+	//	ResetLiveTime();
+	//}
+
+
 	//PlayActor Color;
 
 	//if (RGB(0, 0, 255) == Color.GetGroundColor(RGB(0, 0, 255)))
@@ -122,15 +112,10 @@ void MainStageLevel::Release()
 
 void MainStageLevel::LevelStart(GameEngineLevel* _PrevLevel)
 {
-	//if (nullptr == LevelPlayer)
-	//{
-	//	MsgBoxAssert("플레이어를 세팅하지 않았습니다.");
-	//}
-	//LevelPlayer->SetGroundTexture("MapPixel.bmp");
-
 	LevelPlayer = Player::MainPlayer;
 
 	LevelPlayer->SetGroundTexture("MapPixel.bmp");
+
 
 }
 

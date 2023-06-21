@@ -8,6 +8,16 @@ enum class Monsters
 
 };
 
+enum class MonsterState
+{
+	Idle,
+	Run,
+	Jump,
+	Fall,
+	Attack,
+	Max, // 일반적으로 사용하지 않는 값.
+};
+
 enum class MonsterDir
 {
 	Right,
@@ -36,8 +46,12 @@ public:
 	Monster& operator=(Monster&& _Other) noexcept = delete;
 
 	GameEngineRenderer* BladeMasterRenderer = nullptr;
+	GameEngineRenderer* BladeMasterRenderer2 = nullptr;
+	GameEngineRenderer* BladeMasterRenderer3 = nullptr;
+
 	//GameEngineRenderer* BladeMasterRenderer2 = nullptr;
 
+	void StateUpdate(float _Delta);
 
 	//GameEngineRenderer* ArmorLordRenderer = nullptr;
 
@@ -45,8 +59,13 @@ public:
 	void RunStart();
 	void JumpStart();
 	void AttackStart();
+	void IdleUpdate(float _Delta);
 
+	void ChanageState(MonsterState State);
 	void ChangeAnimationState(const std::string& _StateName);
+
+	MonsterState State = MonsterState::Max;
+	std::string CurState = "";
 
 	MonsterDir Dir = MonsterDir::Right;
 

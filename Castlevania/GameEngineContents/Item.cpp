@@ -35,6 +35,9 @@ void Item::Start()
 
 		}
 	}
+	{
+		// GameEngineCollision* ItemFireColl = CreateCollision(CollisionOrder::)
+	}
 
 }
 

@@ -117,6 +117,13 @@ void Player::RunUpdate(float _Delta)
 		if (RGB(255, 255, 255) == Color) // 흰색바탕이면 중력적용
 		{
 			Gravity(_Delta);
+
+			if (GetGravityVector().Y > 500.0f)
+			{
+				ChanageState(PlayerState::Fall);
+				return;
+			}
+
 		}
 		else
 		{
@@ -158,10 +165,6 @@ void Player::RunUpdate(float _Delta)
 
 		MovePos = { MoveSpeed * _Delta, 0.0f };
 	}
-	//if (true == GameEngineInput::IsPress('S'))
-	//{
-	//	MovePos = { 0.0f, MoveSpeed * _Delta };
-	//}
 
 	if (true == GameEngineInput::IsDown(VK_SPACE))
 	{
@@ -178,16 +181,16 @@ void Player::RunUpdate(float _Delta)
 		return;
 	}
 
-	{
-		// 흰색이면 움직여라 못가게 막는코드
-		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
+	//{
+	//	// 흰색이면 움직여라 못가게 막는코드
+	//	unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
 
-		if (Color == RGB(255, 255, 255))
-		{
-			AddPos(MovePos);
-			GetLevel()->GetMainCamera()->AddPos(MovePos);
-		}
-	}
+	//	if (Color == RGB(255, 255, 255))
+	//	{
+	//		AddPos(MovePos);
+	//	}
+	//}
+
 	{
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
 
@@ -203,7 +206,56 @@ void Player::RunUpdate(float _Delta)
 		return;
 	}
 
+	{
+		unsigned int Color = GetGroundColor(RGB(255, 255, 255), CheckPos);
 
+		if (Color == RGB(255, 255, 255))
+		{
+			// MovePos를 바꿔버리는 방법이 있을것이고.
+
+			if (RGB(255, 255, 255) == GetGroundColor(RGB(255, 255, 255), MovePos))
+			{
+				float4 XPos = float4::ZERO;
+				float4 Dir = MovePos.X <= 0.0f ? float4::RIGHT : float4::LEFT;
+
+				while (RGB(255, 0, 0) != GetGroundColor(RGB(255, 255, 255), MovePos + XPos))
+				{
+					XPos += Dir;
+
+					if (abs(XPos.X) > 50.0f)
+					{
+						break;
+					}
+				}
+
+				float4 YPos = float4::ZERO;
+				while (RGB(255, 0, 0) != GetGroundColor(RGB(255, 255, 255), MovePos + YPos))
+				{
+					YPos.Y += 1;
+
+					if (YPos.Y > 60.0f)
+					{
+						break;
+					}
+				}
+
+				if (abs(XPos.X) >= YPos.Y)
+				{
+					while (RGB(255, 0, 0) != GetGroundColor(RGB(255, 255, 255), MovePos))
+					{
+						MovePos.Y += 1;
+					}
+				}
+
+			}
+
+			// 내가 움직이려는 
+			// GetGroundColor(RGB(255, 255, 255), MovePos);
+
+			AddPos(MovePos);
+			GetLevel()->GetMainCamera()->AddPos(MovePos);
+		}
+	}
 }
 
 void Player::JumpUpdate(float _Delta)
@@ -221,7 +273,7 @@ void Player::JumpUpdate(float _Delta)
 
 	AddPos(MovePos);
 
-	// 더블점프 -> 안되는중
+	// 더블점프
 	if (IsJump == true && GameEngineInput::IsDown(VK_SPACE))
 	{
 		SetGravityVector(float4::UP * 1000.0f);
@@ -238,6 +290,11 @@ void Player::JumpUpdate(float _Delta)
 
 	// 점프하고 내 아래 픽셀이 허공이라면 fall 상태로..
 	{
+		if (MainRenderer->IsAnimationEnd())
+		{
+			ChanageState(PlayerState::Fall);
+		}
+
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 
 		if (Color != RGB(255, 255, 255))
@@ -269,7 +326,30 @@ void Player::DuckingUpdate(float _Delta)
 
 void Player::FallingUpdate(float _Delta)
 {
+	float4 MovePos = float4::ZERO;
+	if (true == GameEngineInput::IsPress('A'))
+	{
+		MovePos += float4::LEFT * _Delta * 300.0f;
+	}
 
+	if (true == GameEngineInput::IsPress('D'))
+	{
+		MovePos += float4::RIGHT * _Delta * 300.0f;
+	}
+
+	AddPos(MovePos);
+
+	Gravity(_Delta);
+
+
+	unsigned int Color = GetGroundColor(RGB(255, 255, 255));
+
+	if (Color != RGB(255, 255, 255))
+	{
+		// 땅에 땋으면
+		ChanageState(PlayerState::Idle);
+		return;
+	}
 }
 
 void Player::AttackUpdate(float _Delta)
